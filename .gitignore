@@ -2,3 +2,7 @@ __pycache__/
 *.egg-info/
 .DS_Store
 .idea
+glide_text2im/glide_model_cache/upsample.pt.lock
+glide_text2im/glide_model_cache/upsample.pt
+glide_text2im/glide_model_cache/base.pt.lock
+glide_text2im/glide_model_cache/base.pt
