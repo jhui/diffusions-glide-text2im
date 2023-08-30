@@ -122,6 +122,7 @@ class Text2ImUNet(UNetModel):
 
     def forward(self, x, timesteps, tokens=None, mask=None):
         hs = []
+        hs2 = []
         emb = self.time_embed(timestep_embedding(timesteps, self.model_channels))
         if self.xf_width:
             text_outputs = self.get_text_emb(tokens, mask)
@@ -133,9 +134,12 @@ class Text2ImUNet(UNetModel):
         for module in self.input_blocks:
             h = module(h, emb, xf_out)
             hs.append(h)
+            hs2.append(h)
         h = self.middle_block(h, emb, xf_out)
+        hs3 = []
         for module in self.output_blocks:
             h = th.cat([h, hs.pop()], dim=1)
+            hs3.append(h)
             h = module(h, emb, xf_out)
         h = h.type(x.dtype)
         h = self.out(h)

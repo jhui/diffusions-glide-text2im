@@ -25,6 +25,7 @@ setup(
         "ftfy",
         "regex",
         "numpy",
+        "matplotlib",
     ],
     author="OpenAI",
 )
